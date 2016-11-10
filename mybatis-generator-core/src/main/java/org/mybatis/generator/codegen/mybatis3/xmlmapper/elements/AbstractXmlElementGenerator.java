@@ -68,6 +68,12 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
                 introspectedTable.getBaseColumnListId()));
         return answer;
     }
+    protected XmlElement getFindWhereElement() {
+    	XmlElement answer = new XmlElement("include"); //$NON-NLS-1$
+    	answer.addAttribute(new Attribute("refid", //$NON-NLS-1$
+    			introspectedTable.getFindWhereId()));
+    	return answer;
+    }
 
     protected XmlElement getBlobColumnListElement() {
         XmlElement answer = new XmlElement("include"); //$NON-NLS-1$

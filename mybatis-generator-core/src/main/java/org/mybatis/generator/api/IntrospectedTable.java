@@ -92,7 +92,9 @@ public abstract class IntrospectedTable {
         ATTR_BASE_COLUMN_LIST_ID,
         ATTR_BLOB_COLUMN_LIST_ID,
         ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
-        ATTR_MYBATIS3_SQL_PROVIDER_TYPE
+        ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
+        ATTR_FIND_WHERE_ID,
+        ATTR_FIND_BY_MODEL_ID
     }
 
     protected TableConfiguration tableConfiguration;
@@ -536,10 +538,18 @@ public abstract class IntrospectedTable {
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
         setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        setFindWhere("Find_Where");
+        setFindByModel("findByModel");
     }
 
+    public void setFindWhere(String s) {
+        internalAttributes.put(InternalAttribute.ATTR_FIND_WHERE_ID, s);
+    }
+    public void setFindByModel(String s) {
+    	internalAttributes.put(InternalAttribute.ATTR_FIND_BY_MODEL_ID, s);
+    }
     public void setBlobColumnListId(String s) {
-        internalAttributes.put(InternalAttribute.ATTR_BLOB_COLUMN_LIST_ID, s);
+    	internalAttributes.put(InternalAttribute.ATTR_BLOB_COLUMN_LIST_ID, s);
     }
 
     public void setBaseColumnListId(String s) {
@@ -659,6 +669,14 @@ public abstract class IntrospectedTable {
     public String getBaseColumnListId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_BASE_COLUMN_LIST_ID);
+    }
+    public String getFindWhereId() {
+    	return internalAttributes
+    			.get(InternalAttribute.ATTR_FIND_WHERE_ID);
+    }
+    public String getFindByModelId() {
+    	return internalAttributes
+    			.get(InternalAttribute.ATTR_FIND_BY_MODEL_ID);
     }
 
     public String getExampleWhereClauseId() {
@@ -817,7 +835,7 @@ public abstract class IntrospectedTable {
         sb.append(calculateJavaClientInterfacePackage());
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("Mapper"); //$NON-NLS-1$
+        sb.append("Dao"); //$NON-NLS-1$
         setMyBatis3JavaMapperType(sb.toString());
 
         sb.setLength(0);

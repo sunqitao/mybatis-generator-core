@@ -169,15 +169,15 @@ public class InnerClass extends JavaElement {
 
         sb.append(" {"); //$NON-NLS-1$
         indentLevel++;
-        
+        OutputUtilities.newLine(sb);
         Iterator<Field> fldIter = fields.iterator();
         while (fldIter.hasNext()) {
             OutputUtilities.newLine(sb);
             Field field = fldIter.next();
             sb.append(field.getFormattedContent(indentLevel));
-            if (fldIter.hasNext()) {
-                OutputUtilities.newLine(sb);
-            }
+//            if (fldIter.hasNext()) { //每个属性之后都会增加一个空行
+//                OutputUtilities.newLine(sb);
+//            }
         }
 
         if (initializationBlocks.size() > 0) {

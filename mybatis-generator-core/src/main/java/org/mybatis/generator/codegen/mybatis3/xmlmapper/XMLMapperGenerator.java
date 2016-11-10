@@ -30,6 +30,8 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.CountByExampleE
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByExampleElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByPrimaryKeyElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ExampleWhereClauseElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.FindByModelElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.FindWhereElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.InsertElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.InsertSelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithBLOBsElementGenerator;
@@ -71,6 +73,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addExampleWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
         addBaseColumnListElement(answer);
+        addFindWhereElement(answer);
         addBlobColumnListElement(answer);
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
@@ -86,6 +89,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addUpdateByPrimaryKeySelectiveElement(answer);
         addUpdateByPrimaryKeyWithBLOBsElement(answer);
         addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
+        addFindByModelElement(answer);
 
         return answer;
     }
@@ -127,6 +131,14 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
             AbstractXmlElementGenerator elementGenerator = new BaseColumnListElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
+    }
+    protected void addFindWhereElement(XmlElement parentElement) {
+    		AbstractXmlElementGenerator elementGenerator = new FindWhereElementGenerator();
+    		initializeAndExecuteGenerator(elementGenerator, parentElement);
+    }
+    protected void addFindByModelElement(XmlElement parentElement) {
+    	AbstractXmlElementGenerator elementGenerator = new FindByModelElementGenerator();
+    	initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addBlobColumnListElement(XmlElement parentElement) {

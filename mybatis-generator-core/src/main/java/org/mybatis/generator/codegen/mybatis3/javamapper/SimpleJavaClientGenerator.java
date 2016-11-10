@@ -31,6 +31,7 @@ import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByPrimaryKeyMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.FindByModelMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectAllMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
@@ -86,6 +87,7 @@ public class SimpleJavaClientGenerator extends AbstractJavaClientGenerator {
         addSelectByPrimaryKeyMethod(interfaze);
         addSelectAllMethod(interfaze);
         addUpdateByPrimaryKeyMethod(interfaze);
+        addFindByModelMethod(interfaze);
 
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         if (context.getPlugins().clientGenerated(interfaze, null,
@@ -113,6 +115,12 @@ public class SimpleJavaClientGenerator extends AbstractJavaClientGenerator {
             AbstractJavaMapperMethodGenerator methodGenerator = new InsertMethodGenerator(true);
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
+    }
+    protected void addFindByModelMethod(Interface interfaze) {
+    	if (introspectedTable.getRules().generateInsert()) {
+    		AbstractJavaMapperMethodGenerator methodGenerator = new FindByModelMethodGenerator(true);
+    		initializeAndExecuteGenerator(methodGenerator, interfaze);
+    	}
     }
 
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {

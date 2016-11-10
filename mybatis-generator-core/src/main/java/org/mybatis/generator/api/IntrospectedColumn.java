@@ -156,9 +156,18 @@ public class IntrospectedColumn {
     public boolean isBLOBColumn() {
         String typeName = getJdbcTypeName();
 
-        return "BINARY".equals(typeName) || "BLOB".equals(typeName) //$NON-NLS-1$ //$NON-NLS-2$
-                || "CLOB".equals(typeName) || "LONGVARBINARY".equals(typeName) //$NON-NLS-1$ //$NON-NLS-2$
-                || "LONGVARCHAR".equals(typeName) || "VARBINARY".equals(typeName); //$NON-NLS-1$ //$NON-NLS-2$
+//        return "BINARY".equals(typeName) || "BLOB".equals(typeName) //$NON-NLS-1$ //$NON-NLS-2$
+//                || "CLOB".equals(typeName) || "LONGVARBINARY".equals(typeName) //$NON-NLS-1$ //$NON-NLS-2$
+//                || "LONGVARCHAR".equals(typeName) || "VARBINARY".equals(typeName); //$NON-NLS-1$ //$NON-NLS-2$
+        return false; //sqt 不返回 这样就不会生成blog类了
+        /**
+         * 如果建表语句中有 jdbcType=“varcharChar” javaType=“java.lang.String”   jdbcType=“BLOB”
+         * 则需要在
+         * <table table="user">
+         * <columnOverride> column="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
+         * <columnOverride> column="photo" jdbcType="BLOB" />
+         * 
+         */
     }
 
     public boolean isStringColumn() {
