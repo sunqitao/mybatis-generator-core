@@ -171,6 +171,6 @@ public class DefaultDAOMethodNameCalculator implements DAOMethodNameCalculator {
     }
     public String getFindByModelMethodName(
     		IntrospectedTable introspectedTable) {
-    	return "findByModel"; //$NON-NLS-1$
+    	return "queryByModel"; //$NON-NLS-1$
     }
 }

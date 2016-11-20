@@ -539,7 +539,7 @@ public abstract class IntrospectedTable {
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
         setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
         setFindWhere("Find_Where");
-        setFindByModel("findByModel");
+        setFindByModel("queryByModel");
     }
 
     public void setFindWhere(String s) {
