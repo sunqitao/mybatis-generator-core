@@ -12,7 +12,7 @@
             <property name="suppressAllComments" value="true"/>  
         </commentGenerator>  
         <!--Êý¾Ý¿âÁ´½ÓURL£¬ÓÃ»§Ãû¡¢ÃÜÂë -->  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://rds28i41oqbp278852g8o.mysql.rds.aliyuncs.com/wanyi_origin" userId="wanyi" password="wwwwanyicool">  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://.com/" userId="root" password="s1111">  
         </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false"/>  
